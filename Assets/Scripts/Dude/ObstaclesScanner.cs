@@ -46,27 +46,6 @@ public class ObstaclesScanner : MonoBehaviour {
     visibleCoversRight.Clear();
     visibleCoversLeft.Clear();
 
-    // Collider[] coversInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, coverMask);
-
-    // for (int i = 0; i < coversInViewRadius.Length; i++) {
-    //   // Transform target = coversInViewRadius[i].transform;
-    //   GameObject target = coversInViewRadius[i].gameObject;
-    //   Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
-    //   float angle = Vector3.SignedAngle(transform.forward, dirToTarget, Vector3.up);
-    //   if ((angle >= -viewAngle / 2) && (angle < viewAngle / 2)) {
-    //       visibleCoversFront.Add(target);
-    //   }
-    //   if ((angle >= viewAngle / 2) && (angle < (viewAngle / 2 + 90) )) {
-    //       visibleCoversRight.Add(target);
-    //   }
-    //   if ((angle >= (-viewAngle / 2 -90) ) && (angle <= -viewAngle / 2)) {
-    //       visibleCoversLeft.Add(target);
-    //   }
-    //   // if (Physics.Raycast(transform.position, target.transform.position, out hit, viewRadius)) {  
-    //   //   Debug.Log(target + " " + hit.collider.gameObject.layer);
-    //   // }
-    // }
-
     for (int i = 0; i < allCovers.Count; i++) {
       GameObject target = allCovers[i];
       Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
