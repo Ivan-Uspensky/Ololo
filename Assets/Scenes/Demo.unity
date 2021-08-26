@@ -6297,6 +6297,8 @@ GameObject:
   - component: {fileID: 487399988}
   - component: {fileID: 487399987}
   - component: {fileID: 487399991}
+  - component: {fileID: 487399992}
+  - component: {fileID: 487399993}
   m_Layer: 13
   m_Name: Dude
   m_TagString: Untagged
@@ -6404,6 +6406,36 @@ MonoBehaviour:
   visibleCoversFront: []
   visibleCoversLeft: []
   visibleCoversRight: []
+--- !u!114 &487399992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487399986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b526785ae3e10dc4dac3bcde678efe71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  watchCamera: {fileID: 809940720}
+--- !u!54 &487399993
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487399986}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &494791784
 PrefabInstance:
   m_ObjectHideFlags: 0
