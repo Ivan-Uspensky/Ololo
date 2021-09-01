@@ -5,8 +5,7 @@ using UnityEngine;
 public class HiveMind : MonoBehaviour {
   public Graph currentGraph;
   ShitHeadPerforms shitHeadPerforms;
-
-  List<Transform> shitHeads = new List<Transform>();
+  public List<Transform> shitHeads = new List<Transform>();
   List<List<GameObject>> allCovers = new List<List<GameObject>>();
   Node start; 
   Node end;
@@ -14,9 +13,6 @@ public class HiveMind : MonoBehaviour {
   
   void Start() {
     allCoversIndex = 0;
-    foreach (Transform child in transform) {
-      shitHeads.Add(child);
-    }
   }
 
   public void GeneratePaths(List<GameObject> visibleCoversFront, List<GameObject> visibleCoversLeft, List<GameObject> visibleCoversRight) {
@@ -59,6 +55,7 @@ public class HiveMind : MonoBehaviour {
 		Node nearest = currentGraph.nodes[currentGraph.nodes.Count - 1];
 		if (currentGraph.nodes.Count > 1 ) {
       for (int i = 0; i < currentGraph.nodes.Count - 1; i++) {
+        Debug.Log(shitHead + " - " + currentGraph.nodes[i] + " - " + i);
         temp = (shitHead - currentGraph.nodes[i].transform.position).sqrMagnitude;
         if (temp < dist) {
           dist = temp;

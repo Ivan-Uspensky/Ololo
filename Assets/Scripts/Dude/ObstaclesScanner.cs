@@ -20,55 +20,82 @@ public class ObstaclesScanner : MonoBehaviour {
   [HideInInspector]
   public List<GameObject> visibleCoversRight = new List<GameObject>();
 
-  void Start() {
-    HiveMind = ShitheadsPack.GetComponent<HiveMind>();
-
-    GameObject[] gos = GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[]; //will return an array of all GameObjects in the scene
+  void Awake() {
+    GameObject[] gos = GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[];
     foreach(GameObject go in gos) {
       if (go.layer == 7) {
         allCovers.Add(go);
       }
     }
-
+    Debug.Log("1");
+  }
+  
+  void Start() {
+    HiveMind = ShitheadsPack.GetComponent<HiveMind>();
+    Debug.Log("2");
     StartCoroutine("FindClosestCoversWithDelay", 1);
+    Debug.Log("3");
   }
 
   IEnumerator FindClosestCoversWithDelay(float delay) {
     while (true) {
+      Debug.Log("4");
       yield return new WaitForSeconds(delay);
       FindClosestCovers();
     }
   }
 
   void FindClosestCovers() {
-
+    Debug.Log("5");
     visibleCoversFront.Clear();
     visibleCoversRight.Clear();
     visibleCoversLeft.Clear();
 
-    for (int i = 0; i < allCovers.Count; i++) {
-      GameObject target = allCovers[i];
+    // for (int i = 0; i < allCovers.Count; i++) {
+    //   GameObject target = allCovers[i];
+    //   Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
+    //   if (Physics.Raycast(transform.position, dirToTarget, out hit, viewRadius)) {
+    //     if (hit.collider.gameObject.layer == 7 && hit.collider.gameObject.name == target.name) {
+    //       float angle = Vector3.SignedAngle(transform.forward, dirToTarget, Vector3.up);
+    //       if ((angle >= -viewAngle / 2) && (angle < viewAngle / 2)) {
+    //           visibleCoversFront.Add(target);
+    //       }
+    //       if ((angle >= viewAngle / 2) && (angle < (viewAngle / 2 + 90) )) {
+    //           visibleCoversRight.Add(target);
+    //       }
+    //       if ((angle >= (-viewAngle / 2 -90) ) && (angle <= -viewAngle / 2)) {
+    //           visibleCoversLeft.Add(target);
+    //       }
+    //     }
+    //   }
+    // }
+
+    Collider[] coversInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, coverMask);
+
+    for (int i = 0; i < coversInViewRadius.Length; i++) {
+      // Transform target = coversInViewRadius[i].transform;
+      GameObject target = coversInViewRadius[i].gameObject;
       Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
-      if (Physics.Raycast(transform.position, dirToTarget, out hit, viewRadius)) {
-        if (hit.collider.gameObject.layer == 7 && hit.collider.gameObject.name == target.name) {
-          float angle = Vector3.SignedAngle(transform.forward, dirToTarget, Vector3.up);
-          if ((angle >= -viewAngle / 2) && (angle < viewAngle / 2)) {
-              visibleCoversFront.Add(target);
-          }
-          if ((angle >= viewAngle / 2) && (angle < (viewAngle / 2 + 90) )) {
-              visibleCoversRight.Add(target);
-          }
-          if ((angle >= (-viewAngle / 2 -90) ) && (angle <= -viewAngle / 2)) {
-              visibleCoversLeft.Add(target);
-          }
-        }
+      float angle = Vector3.SignedAngle(transform.forward, dirToTarget, Vector3.up);
+      if ((angle >= -viewAngle / 2) && (angle < viewAngle / 2)) {
+          visibleCoversFront.Add(target);
       }
+      if ((angle >= viewAngle / 2) && (angle < (viewAngle / 2 + 90) )) {
+          visibleCoversRight.Add(target);
+      }
+      if ((angle >= (-viewAngle / 2 -90) ) && (angle <= -viewAngle / 2)) {
+          visibleCoversLeft.Add(target);
+      }
+      // if (Physics.Raycast(transform.position, target.transform.position, out hit, viewRadius)) {  
+      //   Debug.Log(target + " " + hit.collider.gameObject.layer);
+      // }
     }
 
+    Debug.Log("6");
     if (visibleCoversFront.Count > 3) visibleCoversFront = visibleCoversFront.GetRange(0, 3);
     if (visibleCoversRight.Count > 3) visibleCoversRight = visibleCoversRight.GetRange(0, 3);
     if (visibleCoversLeft.Count > 3) visibleCoversLeft = visibleCoversLeft.GetRange(0, 3);
-  
+    Debug.Log("7");
     HiveMind.GeneratePaths(visibleCoversLeft, visibleCoversRight, visibleCoversFront);
   
   }

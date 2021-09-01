@@ -37,7 +37,6 @@ public class ShitHeadPerforms : MonoBehaviour {
         }
       }
     }
-    
   }
 
   public void SetCoveredPath(List<Node> path) {
@@ -73,28 +72,11 @@ public class ShitHeadPerforms : MonoBehaviour {
         tempPath.Clear();
         tempPath.Insert(0, lastNode);
         for (int i = 0; i < path.Count; i++) {
+          // GetCoverPoint
           tempPath.Add(path[i]);
         }
       }
       myPath = tempPath;
-      // if (myPath[nodeIndex] != path[0]) {
-      //   Debug.Log(" nodes are updated ");
-      //   Node lastNode = myPath[nodeIndex];
-      //   myPath.Clear();
-      //   int j = 0;
-      //   myPath.Insert(0, lastNode);
-      //   int fromIndex = path.IndexOf(lastNode) >= 0 ? path.IndexOf(lastNode) : 0;
-      //   Debug.Log("fromIndex: " + fromIndex + " - " + path.Count);
-      //   for (int i = fromIndex; i < path.Count; i++) {
-      //     j++;
-      //     myPath.Insert(j, path[i]);
-      //   }
-      //   // nodeIndex = 0;
-      // } else {
-      //   myPath = path;
-      //   Debug.Log(" nodes are equal ");
-      //   // currentLastNode = myPath[0];
-      // }
       nodeIndex = 0;
     } else {
       Debug.Log(" path remains the same ");
