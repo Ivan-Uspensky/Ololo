@@ -27,26 +27,21 @@ public class ObstaclesScanner : MonoBehaviour {
         allCovers.Add(go);
       }
     }
-    Debug.Log("1");
   }
   
   void Start() {
     HiveMind = ShitheadsPack.GetComponent<HiveMind>();
-    Debug.Log("2");
     StartCoroutine("FindClosestCoversWithDelay", 1);
-    Debug.Log("3");
   }
 
   IEnumerator FindClosestCoversWithDelay(float delay) {
     while (true) {
-      Debug.Log("4");
       yield return new WaitForSeconds(delay);
       FindClosestCovers();
     }
   }
 
   void FindClosestCovers() {
-    Debug.Log("5");
     visibleCoversFront.Clear();
     visibleCoversRight.Clear();
     visibleCoversLeft.Clear();
@@ -91,11 +86,9 @@ public class ObstaclesScanner : MonoBehaviour {
       // }
     }
 
-    Debug.Log("6");
     if (visibleCoversFront.Count > 3) visibleCoversFront = visibleCoversFront.GetRange(0, 3);
     if (visibleCoversRight.Count > 3) visibleCoversRight = visibleCoversRight.GetRange(0, 3);
     if (visibleCoversLeft.Count > 3) visibleCoversLeft = visibleCoversLeft.GetRange(0, 3);
-    Debug.Log("7");
     HiveMind.GeneratePaths(visibleCoversLeft, visibleCoversRight, visibleCoversFront);
   
   }

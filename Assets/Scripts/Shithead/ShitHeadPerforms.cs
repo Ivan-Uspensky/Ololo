@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEditor;
 
 public class ShitHeadPerforms : MonoBehaviour {
-  [HideInInspector]
-  List<Node> prevPath = new List<Node>();
+  // [HideInInspector]
+  public Transform dude;
+  // List<Node> prevPath = new List<Node>();
   List<Node> myPath = new List<Node>();
   List<Node> tempPath = new List<Node>();
   public float distanceToStop;
@@ -26,14 +27,14 @@ public class ShitHeadPerforms : MonoBehaviour {
     if (myPath.Count > 0) {
       if ((new Vector3(transform.position.x, 0, transform.position.z) - myPath[nodeIndex].transform.position).sqrMagnitude > sqrDistanceToStop) {
         if (nodeIndex < myPath.Count) {
-          agent.SetDestination(myPath[nodeIndex].transform.position);
+          agent.SetDestination(GetCoverPoint(myPath[nodeIndex]));
           // Debug.Log("current LastNode: " + myPath[nodeIndex]);
         }
       } else {
         if (nodeIndex < myPath.Count - 1) {
           // currentLastNode = myPath[nodeIndex];
           nodeIndex++;
-          Debug.Log("new LastNode: " + myPath[nodeIndex]);
+          // Debug.Log("new LastNode: " + myPath[nodeIndex]);
         }
       }
     }
@@ -41,25 +42,25 @@ public class ShitHeadPerforms : MonoBehaviour {
 
   public void SetCoveredPath(List<Node> path) {
     // 
-    string nodes = "1: ";
-    for (int i = 0; i < path.Count; i++) {
-      nodes += path[i] + " - ";
-    }
-    nodes += "!";
-    Debug.Log(nodes);
-    nodes = "2: ";
-    for (int i = 0; i < myPath.Count; i++) {
-      nodes += myPath[i] + " - ";
-    }
-    nodes += "!";
-    Debug.Log(nodes);
+    // string nodes = "1: ";
+    // for (int i = 0; i < path.Count; i++) {
+    //   nodes += path[i] + " - ";
+    // }
+    // nodes += "!";
+    // Debug.Log(nodes);
+    // nodes = "2: ";
+    // for (int i = 0; i < myPath.Count; i++) {
+    //   nodes += myPath[i] + " - ";
+    // }
+    // nodes += "!";
+    // Debug.Log(nodes);
     // 
     if (!CompareLists(path, myPath)) {
       if (myPath.Count == 0) {
         myPath = path;
       }
-      Debug.Log("nodeIndex: " + nodeIndex);
-      Debug.Log(myPath[nodeIndex] + " - " + path[0]);
+      // Debug.Log("nodeIndex: " + nodeIndex);
+      // Debug.Log(myPath[nodeIndex] + " - " + path[0]);
       
       Node lastNode = myPath[nodeIndex];
       int lastNodePosition = path.IndexOf(lastNode);
@@ -70,17 +71,39 @@ public class ShitHeadPerforms : MonoBehaviour {
         }
       } else {
         tempPath.Clear();
+        // TODO: does it necessary?
         tempPath.Insert(0, lastNode);
         for (int i = 0; i < path.Count; i++) {
-          // GetCoverPoint
           tempPath.Add(path[i]);
         }
       }
       myPath = tempPath;
       nodeIndex = 0;
     } else {
-      Debug.Log(" path remains the same ");
+      // Debug.Log(" path remains the same ");
     }
+  }
+
+  Vector3 GetCoverPoint(Node node) {
+    Vector3 farCP = Vector3.zero;
+    
+    if (node.type == Node.Nodetype.Connector) farCP = node.transform.position; 
+    if (node.type == Node.Nodetype.LowCover) {
+      float toDudeCurrent = 0;
+      float toDudeMax = 0;
+      foreach (Transform child in node.transform) {
+        toDudeCurrent = (child.position - dude.position).sqrMagnitude;
+        if (toDudeCurrent > toDudeMax) {
+          toDudeMax = toDudeCurrent;
+          farCP = child.position;
+        }
+		  }
+    }
+    if (node.type == Node.Nodetype.HighCover) {
+      Debug.Log("need to think");
+      farCP = node.transform.position;
+    }
+    return farCP;
   }
 
   public bool HasPath() {

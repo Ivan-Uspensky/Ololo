@@ -55,7 +55,7 @@ public class HiveMind : MonoBehaviour {
 		Node nearest = currentGraph.nodes[currentGraph.nodes.Count - 1];
 		if (currentGraph.nodes.Count > 1 ) {
       for (int i = 0; i < currentGraph.nodes.Count - 1; i++) {
-        Debug.Log(shitHead + " - " + currentGraph.nodes[i] + " - " + i);
+        // Debug.Log(shitHead + " - " + currentGraph.nodes[i] + " - " + i);
         temp = (shitHead - currentGraph.nodes[i].transform.position).sqrMagnitude;
         if (temp < dist) {
           dist = temp;

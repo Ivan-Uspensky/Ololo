@@ -9,6 +9,10 @@ public class Node : MonoBehaviour {
   protected List<Node> m_Connections = new List<Node>();
   [SerializeField]
   protected Transform currentShithead;
+  public enum Nodetype { Connector, LowCover, HighCover };
+  [SerializeField]
+  public Nodetype type;
+    
   List<Vector3> coverPoints;
   public virtual List<Node> connections {
 		get {
@@ -30,6 +34,19 @@ public class Node : MonoBehaviour {
 	  m_Connections = m_Connections.Distinct().ToList();
   }
 	
+  void CountChildren(Transform nodeParent) {
+    foreach (Transform child in nodeParent) {
+      coverPoints.Add(child.position);
+    }
+  }
+
+  public List<Vector3> getCoverPoints() {
+		return coverPoints;
+	}
+
+  public void SetActiveShithead(Transform shithead) {
+    currentShithead = shithead;
+  }
   void OnDrawGizmos() {
     Gizmos.color = Color.green;
     Gizmos.DrawSphere(transform.position, 0.5f);
@@ -40,20 +57,6 @@ public class Node : MonoBehaviour {
     //   Gizmos.color = Color.cyan;
     //   Gizmos.DrawLine(from, to);
 		// }
-  }
-  
-  void CountChildren(Transform nodeParent) {
-    foreach (Transform child in nodeParent) {
-      coverPoints.Add(child.position);
-    }
-  }
-  
-  public List<Vector3> getCoverPoints() {
-		return coverPoints;
-	}
-
-  public void SetActiveShithead(Transform shithead) {
-    currentShithead = shithead;
   }
 
 }
