@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 18142380}
   - component: {fileID: 18142383}
   - component: {fileID: 18142384}
+  - component: {fileID: 18142385}
   m_Layer: 12
   m_Name: Shithead-1
   m_TagString: Untagged
@@ -230,11 +231,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18142378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67a1f83c86872b7499eee01c2cd59b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dude: {fileID: 487399990}
   distanceToStop: 0.5
   ID: 1
 --- !u!195 &18142384
@@ -259,6 +261,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &18142385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18142378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de702521787b8f942935cead160544b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dude: {fileID: 487399990}
 --- !u!1001 &28869039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -827,6 +842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1f83c86872b7499eee01c2cd59b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dude: {fileID: 0}
   distanceToStop: 0.5
   ID: 5
 --- !u!136 &85669589
@@ -9286,6 +9302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1f83c86872b7499eee01c2cd59b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dude: {fileID: 0}
   distanceToStop: 0.5
   ID: 3
 --- !u!195 &1247341684
@@ -9359,6 +9376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1f83c86872b7499eee01c2cd59b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dude: {fileID: 0}
   distanceToStop: 0.5
   ID: 4
 --- !u!136 &1251724781
@@ -10970,6 +10988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1f83c86872b7499eee01c2cd59b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dude: {fileID: 0}
   distanceToStop: 0.5
   ID: 2
 --- !u!195 &1420336652

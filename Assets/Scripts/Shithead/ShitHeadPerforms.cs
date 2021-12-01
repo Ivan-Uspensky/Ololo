@@ -24,6 +24,7 @@ public class ShitHeadPerforms : MonoBehaviour {
   }
 
   void Update() {
+    Debug.Log(myPath.Count + " - " + tempPath.Count + " - " + nodeIndex);
     if (myPath.Count > 0) {
       if ((new Vector3(transform.position.x, 0, transform.position.z) - myPath[nodeIndex].transform.position).sqrMagnitude > sqrDistanceToStop) {
         if (nodeIndex < myPath.Count) {
@@ -55,31 +56,45 @@ public class ShitHeadPerforms : MonoBehaviour {
     // nodes += "!";
     // Debug.Log(nodes);
     // 
-    if (!CompareLists(path, myPath)) {
-      if (myPath.Count == 0) {
+    if (!CompareLists(path, myPath))
+    {
+      if (myPath.Count == 0)
+      {
         myPath = path;
       }
       // Debug.Log("nodeIndex: " + nodeIndex);
       // Debug.Log(myPath[nodeIndex] + " - " + path[0]);
-      
+
       Node lastNode = myPath[nodeIndex];
       int lastNodePosition = path.IndexOf(lastNode);
-      if (lastNodePosition >= 0) {
+      // Debug.Log("lastNode: " + lastNode + ", lastNodePosition: " + lastNodePosition);
+      if (lastNodePosition >= 0)
+      {
+        Debug.Log("here 1");
         tempPath.Clear();
-        for (int i = lastNodePosition; i < path.Count; i++) {
-          tempPath.Add(path[i]);
-        }
-      } else {
-        tempPath.Clear();
-        // TODO: does it necessary?
-        tempPath.Insert(0, lastNode);
-        for (int i = 0; i < path.Count; i++) {
+        for (int i = lastNodePosition; i < path.Count; i++)
+        {
           tempPath.Add(path[i]);
         }
       }
+      else
+      {
+        Debug.Log("here 2");
+        tempPath.Clear();
+        // TODO: does it necessary?
+        tempPath.Insert(0, lastNode);
+        for (int i = 0; i < path.Count; i++)
+        {
+          tempPath.Add(path[i]);
+        }
+      }
+
       myPath = tempPath;
-      nodeIndex = 0;
-    } else {
+      // nodeIndex = 0;
+      if (nodeIndex >= myPath.Count - 1) {
+        nodeIndex = 0;
+      }
+  } else {
       // Debug.Log(" path remains the same ");
     }
   }
@@ -100,7 +115,7 @@ public class ShitHeadPerforms : MonoBehaviour {
 		  }
     }
     if (node.type == Node.Nodetype.HighCover) {
-      Debug.Log("need to think");
+      // Debug.Log("need to think");
       farCP = node.transform.position;
     }
     return farCP;
@@ -139,20 +154,26 @@ public class ShitHeadPerforms : MonoBehaviour {
     return lookUp.Count == 0;
   }
 
+  /*
   void OnDrawGizmos() {
     // Debug.Log("ID: " + ID + ", nodes: " + myPath.Count);
     if (myPath.Count > 0) {
       Gizmos.color = Color.red;
+      Debug.Log("111");
       Gizmos.DrawSphere(myPath[nodeIndex].transform.position + new Vector3(0,2,0), 0.75f);
+      Debug.Log("222");
       Gizmos.color = Color.magenta;
       Handles.color = Color.magenta;
+      Debug.Log("333");
       Gizmos.DrawSphere(myPath[myPath.Count - 1].transform.position + new Vector3(0,2,0), 0.75f);
+      Debug.Log("444");
       Vector3 currentPos = transform.position;
       for (int i = nodeIndex; i < myPath.Count; i++ ) {
 			  Handles.DrawLine(currentPos, myPath[i].transform.position);
 			  currentPos = myPath[i].transform.position;
 		  }
-    }
+      Debug.Log("555");
+    } 
     
-  }
+  } */
 }

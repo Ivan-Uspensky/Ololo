@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HiveMind : MonoBehaviour {
   public Graph currentGraph;
-  ShitHeadPerforms shitHeadPerforms;
+  ShitHeadActs shitHeadActs;
   public List<Transform> shitHeads = new List<Transform>();
   List<List<GameObject>> allCovers = new List<List<GameObject>>();
   Node start; 
@@ -28,9 +28,9 @@ public class HiveMind : MonoBehaviour {
       }
       //
       if (shitHeads[i].gameObject.activeSelf) {
-        shitHeadPerforms = shitHeads[i].gameObject.GetComponent<ShitHeadPerforms>();
-        // if (!shitHeadPerforms.HasPath) {
-        shitHeadPerforms.SetCoveredPath(CoversGetPath(shitHeads[i].position, allCovers[allCoversIndex][0].transform.position).nodes);
+        shitHeadActs = shitHeads[i].gameObject.GetComponent<ShitHeadActs>();
+        // if (!shitHeadActs.HasPath) {
+        shitHeadActs.SetCoveredPath(CoversGetPath(shitHeads[i].position, allCovers[allCoversIndex][0].transform.position).nodes);
         // }
       }
       UpdateAllCoversIndex();
