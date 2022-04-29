@@ -22,16 +22,16 @@ public class HiveMind : MonoBehaviour {
     allCovers.Add(visibleCoversRight);
     allCovers.Add(visibleCoversFront);
     for (int i = 0; i < shitHeads.Count; i++) {
-      // exclude situation when bot has nowhere to go because current list of covers is empty       
+      // handle situation when bot has nowhere to go because current list of covers is empty       
       while(allCovers[allCoversIndex].Count == 0) {
         UpdateAllCoversIndex();    
       }
       //
       if (shitHeads[i].gameObject.activeSelf) {
         shitHeadActs = shitHeads[i].gameObject.GetComponent<ShitHeadActs>();
-        // if (!shitHeadActs.HasPath) {
-        shitHeadActs.SetCoveredPath(CoversGetPath(shitHeads[i].position, allCovers[allCoversIndex][0].transform.position).nodes);
-        // }
+        if (!shitHeadActs.HasPath()) {
+          shitHeadActs.SetCoveredPath(CoversGetPath(shitHeads[i].position, allCovers[allCoversIndex][0].transform.position).nodes);
+        }
       }
       UpdateAllCoversIndex();
     }
@@ -55,7 +55,6 @@ public class HiveMind : MonoBehaviour {
 		Node nearest = currentGraph.nodes[currentGraph.nodes.Count - 1];
 		if (currentGraph.nodes.Count > 1 ) {
       for (int i = 0; i < currentGraph.nodes.Count - 1; i++) {
-        // Debug.Log(shitHead + " - " + currentGraph.nodes[i] + " - " + i);
         temp = (shitHead - currentGraph.nodes[i].transform.position).sqrMagnitude;
         if (temp < dist) {
           dist = temp;

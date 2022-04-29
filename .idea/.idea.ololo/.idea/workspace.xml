@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="84ea9b0b-4072-47a9-8e2f-7e9554344c6d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,12 +83,26 @@
       <workItem from="1637858446391" duration="10000" />
       <workItem from="1638386848859" duration="2749000" />
       <workItem from="1638395295024" duration="74000" />
-      <workItem from="1638395794662" duration="813000" />
+      <workItem from="1638395794662" duration="1179000" />
+      <workItem from="1639002366380" duration="1589000" />
+      <workItem from="1639431919264" duration="718000" />
     </task>
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
@@ -87,5 +119,24 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1630" y="188" width="1001" height="1026" key="dock-window-2/0.0.2560.1040@0.0.2560.1040" timestamp="1638390201181" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Shithead/ShitHeadActs.cs</url>
+          <line>16</line>
+          <properties documentPath="E:\dwnlds\Projects\ololo\Assets\Scripts\Shithead\ShitHeadActs.cs" initialLine="15">
+            <startOffsets>
+              <option value="444" />
+            </startOffsets>
+            <endOffsets>
+              <option value="445" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
