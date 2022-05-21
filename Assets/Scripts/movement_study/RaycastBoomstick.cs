@@ -23,13 +23,13 @@ public class RaycastBoomstick : MonoBehaviour {
     ray.direction = raycastHit.position - raycastOrigin.position;
     
     var tracerEffect = Instantiate(tracer, ray.origin, Quaternion.identity);
-    tracer.AddPosition(ray.origin);
+    tracerEffect.AddPosition(ray.origin);
 
     if (Physics.Raycast(ray, out hitInfo)) {
       hitEffect.transform.position = hitInfo.point;
       hitEffect.transform.forward = hitInfo.normal;
       hitEffect.Emit(1);
-      tracer.transform.position = hitInfo.point;
+      tracerEffect.transform.position = hitInfo.point;
     }
 
   }
