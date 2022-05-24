@@ -10,7 +10,7 @@ public class DudeLocomotion : MonoBehaviour {
     animator = GetComponent<Animator>();
   }
 
-  void Update() {
+  void FixedUpdate() {
     input.x = Input.GetAxis("Horizontal");
     input.y = Input.GetAxis("Vertical");
 
