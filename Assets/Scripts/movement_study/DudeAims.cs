@@ -9,13 +9,11 @@ public class DudeAims : MonoBehaviour {
   public Rig aimLayer;
 
   Camera mainCamera;
-  RaycastBoomstick weapon;
 
   void Start() {
     mainCamera = Camera.main;
     Cursor.visible = false;
     Cursor.lockState = CursorLockMode.Locked;
-    weapon = GetComponentInChildren<RaycastBoomstick>();
   }
 
   void FixedUpdate() {
@@ -24,23 +22,13 @@ public class DudeAims : MonoBehaviour {
   }
 
   void LateUpdate() {
-    // if (aimLayer) {
+    if (aimLayer) {
     //   if (Input.GetButton("Fire2")) {
     //       aimLayer.weight += Time.deltaTime / aimDuration;
     //   } else {
     //       aimLayer.weight -= Time.deltaTime / aimDuration;
     //   }
-    // }
-    
-    if (Input.GetButtonDown("Fire1")) {
-      weapon.StartFiring();
-    }
-    if (weapon.isFiring) {
-      weapon.UpdateFiring(Time.deltaTime);
-    }
-    weapon.UpdateBullets(Time.deltaTime);
-    if (Input.GetButtonUp("Fire1")) {
-      weapon.StopFiring();
+      aimLayer.weight = 1;
     }
   }
 }
